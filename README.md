@@ -43,6 +43,8 @@ The Dockerfile is used to build a container image of your application. Here’s 
 FROM nginx:latest
 
 COPY src/ /usr/share/nginx/html
+
+RUN chmod -R 755 /usr/share/nginx/html
 ```
 
 ---
@@ -71,7 +73,7 @@ name: app-secret
 type: kubernetes.io/dockerconfigjson
 ```
 
-4. Configure the deployment file
+4. Configure the pod file
 
 ```bash
 kubectl run login-app --image=<container registry path>/<name of the image>:v1 --dry-run=client -o yaml > pod.yaml
